@@ -5,6 +5,7 @@ import rehypeHighlight from 'rehype-highlight';
 import { getArticleBySlug } from '../utils/articles';
 import { format } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
+import { Comments } from '../components/Comments';
 import './Article.css';
 import 'highlight.js/styles/vs2015.css';
 
@@ -90,6 +91,9 @@ export const Article = () => {
             {article.content}
           </ReactMarkdown>
         </div>
+
+        {/* 评论区 */}
+        <Comments />
 
         <footer className="article-footer-section">
           <button onClick={() => navigate('/')} className="back-home-button">
