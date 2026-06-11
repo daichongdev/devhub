@@ -8,6 +8,12 @@ const markdownModules = import.meta.glob('../content/**/*.md', {
 
 // 解析 frontmatter（YAML 格式）
 function parseFrontmatter(content: string): { data: any; content: string } {
+  // 确保 content 是字符串
+  if (typeof content !== 'string') {
+    console.error('Invalid content type:', typeof content);
+    return { data: {}, content: '' };
+  }
+
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
   const match = content.match(frontmatterRegex);
 
@@ -54,8 +60,25 @@ function generateArticles(): Article[] {
   const articles: Article[] = [];
   let idCounter = 1;
 
-  Object.entries(markdownModules).forEach(([path, content]) => {
-    const { data, content: markdown } = parseFrontmatter(content as string);
+  Object.entries(markdownModules).forEach(([path, module]) => {
+    // 处理不同的模块格式
+    let content: string;
+    if (typeof module === 'string') {
+      content = module;
+    } else if (module && typeof module === 'object' && 'default' in module) {
+      content = (module as any).default;
+    } else {
+      console.error('Unable to parse module:', path, module);
+      return;
+    }
+
+    // 确保 content 是字符串
+    if (typeof content !== 'string') {
+      console.error('Content is not a string for:', path);
+      return;
+    }
+
+    const { data, content: markdown } = parseFrontmatter(content);
 
     // 从路径生成 slug
     const pathParts = path.split('/');
