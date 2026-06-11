@@ -10,7 +10,7 @@ export const Comments = () => {
         repo="daichongdev/devhub"
         repoId="R_kgDOS3NWGQ"
         category="General"
-        categoryId="DIC_kwDONhqKP84ClOUX"
+        categoryId="DIC_kwDOS3NWGc4C-8FK"
         mapping="pathname"
         strict="0"
         reactionsEnabled="1"
