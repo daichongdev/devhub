@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router basename="/devhub">
+    <Router>
       <div className="app">
         <Header />
         <main className="main-content">
