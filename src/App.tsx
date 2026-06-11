@@ -23,7 +23,7 @@ function App() {
           <div className="footer-content">
             <p>© 2026 DevHub 技术社区. 开放的技术分享平台</p>
             <div className="footer-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/daichongdev/devhub" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
               <span>•</span>
