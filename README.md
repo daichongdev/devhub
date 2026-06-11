@@ -140,27 +140,6 @@ const example = "Hello World";
 | readTime | ✅ | 预计阅读时间（分钟） |
 | avatar | ❌ | 作者头像 URL（推荐使用） |
 
-### 4. 注册文章
-
-在 `src/utils/articles.ts` 的 `markdownFiles` 对象中添加你的文章路径和内容。
-
-**示例：**
-
-```typescript
-const markdownFiles: Record<string, string> = {
-  'golang/your-article-slug': `---
-title: "你的文章标题"
-author: "你的名字"
-// ... 其他元数据
----
-
-# 文章内容
-...
-`,
-  // 其他文章...
-};
-```
-
 ## 🎨 设计风格
 
 ### 配色方案
