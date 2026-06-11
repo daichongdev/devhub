@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#11998e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38ef7d;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景圆形 -->
+  <circle cx="50" cy="50" r="48" fill="url(#grad)"/>
+
+  <!-- 电脑屏幕 -->
+  <rect x="25" y="30" width="50" height="32" rx="2" fill="white" opacity="0.95"/>
+
+  <!-- 屏幕内容（代码符号） -->
+  <text x="35" y="52" font-family="monospace" font-size="20" fill="#11998e" font-weight="bold">&lt;/&gt;</text>
+
+  <!-- 电脑底座 -->
+  <rect x="42" y="62" width="16" height="3" rx="1" fill="white" opacity="0.9"/>
+  <rect x="35" y="65" width="30" height="2" rx="1" fill="white" opacity="0.8"/>
+</svg>

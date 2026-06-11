@@ -1,0 +1,478 @@
+/* ==========================================
+   视觉增强效果 - 让博客更专业更美观
+   ========================================== */
+
+/* 1. 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 2. 页面淡入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* 3. 卡片悬浮效果增强 */
+.article-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.article-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.02) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.article-card:hover::before {
+  opacity: 1;
+}
+
+.article-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* 4. 链接下划线动画 */
+.content-link {
+  position: relative;
+  border-bottom: none !important;
+}
+
+.content-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--color-text);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.content-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* 5. 按钮交互效果增强 */
+.back-home-button,
+.back-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.back-home-button::before,
+.back-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.back-home-button:hover::before,
+.back-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.back-home-button:active,
+.back-button:active {
+  transform: scale(0.98);
+}
+
+/* 6. 代码块增强 */
+.pre-block {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.pre-block:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* 代码块复制按钮样式预留 */
+.pre-block::after {
+  content: attr(data-language);
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  color: #858585;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.pre-block:hover::after {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 7. 引用块增强效果 */
+.content-blockquote {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.content-blockquote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.content-blockquote:hover::before {
+  transform: scaleY(1);
+}
+
+.content-blockquote:hover {
+  background: rgba(0, 0, 0, 0.03);
+  border-left-color: transparent;
+}
+
+/* 8. 标签云效果 */
+.article-tag {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.article-tag::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 4px;
+  background: var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.article-tag:hover::before {
+  opacity: 0.1;
+}
+
+.article-tag:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* 9. 页面切换动画 */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.article-page,
+.home-page {
+  animation: slideInFromRight 0.5s ease-out;
+}
+
+/* 10. 导航栏滚动效果 */
+.navbar {
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* 11. 文章标题渐变效果 */
+.article-page-title {
+  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 12. 加载骨架屏效果 */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0px,
+    #f8f8f8 40px,
+    #f0f0f0 80px
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* 13. 列表项动画 */
+.content-li {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.content-li:hover {
+  padding-left: 0.5rem;
+}
+
+/* 14. 图片懒加载效果 */
+img {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+/* 15. 分类徽章脉冲效果 */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.article-category-badge {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.article-category-badge::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 4px;
+  background: var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.article-category-badge:hover::before {
+  opacity: 0.1;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* 16. 页脚渐变背景 */
+.footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border) 50%,
+    transparent 100%
+  );
+}
+
+/* 17. 滚动条美化 */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 6px;
+  border: 3px solid #f5f5f5;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* 18. 选中文本样式 */
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* 19. Focus 状态优化 */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 20. 响应式优化 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 21. 暗色模式支持准备 */
+@media (prefers-color-scheme: dark) {
+  .navbar.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #444;
+    border-color: #1a1a1a;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }
+}
+
+/* 22. 内容进入动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.article-card {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.article-card:nth-child(1) { animation-delay: 0.1s; }
+.article-card:nth-child(2) { animation-delay: 0.2s; }
+.article-card:nth-child(3) { animation-delay: 0.3s; }
+.article-card:nth-child(4) { animation-delay: 0.4s; }
+.article-card:nth-child(5) { animation-delay: 0.5s; }
+.article-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* 23. 内联代码优化 */
+.inline-code {
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.inline-code:hover {
+  background: #f0f0f0;
+  transform: scale(1.05);
+}
+
+/* 24. 表格优化（如果有） */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+th {
+  background: rgba(0, 0, 0, 0.02);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+tr {
+  transition: background 0.2s ease;
+}
+
+tr:hover {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+/* 25. 加载指示器 */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border-light);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}

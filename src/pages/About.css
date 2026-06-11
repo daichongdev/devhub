@@ -1,0 +1,203 @@
+.about-page {
+  min-height: calc(100vh - 80px);
+  background: var(--color-bg);
+  padding: 4rem 3rem;
+}
+
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--color-bg);
+}
+
+.about-header {
+  background: var(--color-bg);
+  padding: 4rem 0;
+  text-align: left;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: 4rem;
+}
+
+.about-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+.about-subtitle {
+  font-size: 1.375rem;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.about-content {
+  padding: 0;
+}
+
+.about-section {
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.about-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.about-section p {
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  font-size: 1.0625rem;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.011em;
+}
+
+.content-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.content-list li {
+  padding: 1rem 0;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: 1.0625rem;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--color-border-light);
+  letter-spacing: -0.011em;
+}
+
+.content-list li:last-child {
+  border-bottom: none;
+}
+
+.content-list li::before {
+  content: '—';
+  color: var(--color-text-tertiary);
+  margin-right: 1rem;
+  font-size: 1.25rem;
+}
+
+.content-list strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.tech-badge {
+  background: transparent;
+  color: var(--color-text);
+  padding: 0.75rem 0;
+  border-bottom: 2px solid var(--color-border);
+  border-radius: 0;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  transition: border-color 0.2s;
+}
+
+.tech-badge:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border-light);
+  letter-spacing: -0.01em;
+}
+
+.contact-link:hover {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding: 2rem 1.5rem;
+  }
+
+  .about-header {
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .about-section {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .about-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .about-section p {
+    font-size: 1rem;
+  }
+
+  .tech-stack {
+    gap: 0.75rem;
+  }
+
+  .tech-badge {
+    padding: 0.625rem 0;
+    font-size: 0.875rem;
+  }
+
+  .content-list li {
+    font-size: 1rem;
+  }
+
+  .contact-link {
+    font-size: 1rem;
+  }
+}

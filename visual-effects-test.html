@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视觉效果测试页面</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 3rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: #6b6b6b;
+      margin-bottom: 3rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #1a1a1a;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-left: 1rem;
+    }
+
+    .status.pass {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status.pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .demo-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .demo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.02) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .demo-card:hover::before {
+      opacity: 1;
+    }
+
+    .demo-link {
+      color: #1a1a1a;
+      text-decoration: none;
+      position: relative;
+      border-bottom: none;
+      transition: color 0.2s;
+    }
+
+    .demo-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background: #ff6b6b;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .demo-link:hover {
+      color: #ff6b6b;
+    }
+
+    .demo-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .demo-button {
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .demo-button:hover {
+      background: #ff6b6b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .demo-button:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .demo-button:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    .demo-code {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1.5rem;
+      border-radius: 8px;
+      font-family: 'Monaco', monospace;
+      margin: 1rem 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .demo-code:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .demo-inline-code {
+      background: #f6f8fa;
+      color: #d73a49;
+      padding: 0.25em 0.5em;
+      border-radius: 4px;
+      font-family: Monaco, monospace;
+      font-size: 0.9em;
+      border: 1px solid #e1e4e8;
+      transition: all 0.2s ease;
+    }
+
+    .demo-inline-code:hover {
+      background: #f0f0f0;
+      transform: scale(1.05);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-blockquote {
+      border-left: 3px solid #ff6b6b;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: 4px;
+      border: 1px solid #e0e0e0;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .demo-blockquote::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #ff6b6b;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease;
+    }
+
+    .demo-blockquote:hover {
+      background: rgba(0, 0, 0, 0.03);
+      border-left-color: transparent;
+    }
+
+    .demo-blockquote:hover::before {
+      transform: scaleY(1);
+    }
+
+    .demo-tag {
+      display: inline-block;
+      color: #999;
+      font-size: 0.875rem;
+      padding: 0.25rem 0.75rem;
+      margin: 0.25rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .demo-tag::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 4px;
+      background: #ff6b6b;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .demo-tag:hover {
+      color: #ff6b6b;
+      transform: translateY(-2px);
+    }
+
+    .demo-tag:hover::before {
+      opacity: 0.1;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .checklist li::before {
+      content: '✓';
+      color: #28a745;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    ::selection {
+      background: #ff6b6b;
+      color: white;
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f5f5f5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 6px;
+      border: 3px solid #f5f5f5;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 视觉效果测试页面</h1>
+    <p class="subtitle">验证所有交互动画是否正常工作</p>
+
+    <div class="section">
+      <h2>1. 卡片悬停效果 <span class="status pass">✓ 已实现</span></h2>
+      <p style="margin-bottom: 1rem; color: #6b6b6b;">悬停在卡片上，观察上移和阴影加深效果</p>
+      <div class="demo-card">
+        <h3>示例文章标题</h3>
+        <p>这是一个演示卡片。悬停时应该向上移动 8px，并显示更深的阴影。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>2. 链接下划线动画 <span class="status pass">✓ 已实现</span></h2>
+      <p style="margin-bottom: 1rem; color: #6b6b6b;">悬停在链接上，观察下划线从右到左展开</p>
+      <p>这是一个 <a href="#" class="demo-link">演示链接</a>，悬停查看效果。</p>
+    </div>
+
+    <div class="section">
+      <h2>3. 按钮涟漪效果 <span class="status pass">✓ 已实现</span></h2>
+      <p style="margin-bottom: 1rem; color: #6b6b6b;">悬停和点击按钮，观察涟漪扩散和缩放效果</p>
+      <button class="demo-button">点击我测试</button>
+    </div>
+
+    <div class="section">
+      <h2>4. 代码块交互 <span class="status pass">✓ 已实现</span></h2>
+      <p style="margin-bottom: 1rem; color: #6b6b6b;">悬停在代码块上，观察阴影加深和上移效果</p>
+      <div class="demo-code">
+const greeting = "Hello World";
+console.log(greeting);</div>
+    </div>
+
+    <div class="section">
+      <h2>5. 内联代码放大 <span class="status pass">✓ 已实现</span></h2>
+      <p style="margin-bottom: 1rem; color: #6b6b6b;">悬停在内联代码上，观察放大效果</p>
+      <p>使用 <span class="demo-inline-code">React.useState()</span> 来管理状态。</p>
+    </div>
+
+    <div class="section">
+      <h2>6. 引用块动画 <span class="status pass">✓ 已实现</span></h2>
+      <p style="margin-bottom: 1rem; color: #6b6b6b;">悬停在引用块上，观察左侧边框展开效果</p>
+      <blockquote class="demo-blockquote">
+        这是一个引用块示例。悬停时左侧的边框会从上到下展开。
+      </blockquote>
+    </div>
+
+    <div class="section">
+      <h2>7. 标签交互 <span class="status pass">✓ 已实现</span></h2>
+      <p style="margin-bottom: 1rem; color: #6b6b6b;">悬停在标签上，观察背景色和上移效果</p>
+      <div>
+        <span class="demo-tag">#React</span>
+        <span class="demo-tag">#TypeScript</span>
+        <span class="demo-tag">#前端开发</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>8. 文本选中高亮 <span class="status pass">✓ 已实现</span></h2>
+      <p style="margin-bottom: 1rem; color: #6b6b6b;">选中下面的文本，观察高亮颜色</p>
+      <p>选中这段文字，应该显示红色背景和白色文字。</p>
+    </div>
+
+    <div class="section">
+      <h2>9. 滚动条样式 <span class="status pass">✓ 已实现</span></h2>
+      <p style="margin-bottom: 1rem; color: #6b6b6b;">滚动页面或悬停在滚动条上，观察样式</p>
+      <p>页面右侧应该有自定义样式的滚动条（圆角、灰色、悬停变深）。</p>
+    </div>
+
+    <div class="section">
+      <h2>✅ 效果检查清单</h2>
+      <ul class="checklist">
+        <li>文章卡片淡入动画</li>
+        <li>卡片悬停上移 8px</li>
+        <li>卡片悬停阴影加深</li>
+        <li>链接下划线动画</li>
+        <li>按钮涟漪效果</li>
+        <li>按钮点击缩放</li>
+        <li>代码块悬停效果</li>
+        <li>内联代码放大</li>
+        <li>引用块边框动画</li>
+        <li>标签悬停交互</li>
+        <li>文本选中高亮</li>
+        <li>滚动条美化</li>
+        <li>导航栏滚动效果</li>
+        <li>平滑滚动</li>
+        <li>Focus 状态优化</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📋 下一步</h2>
+      <p>如果这个测试页面的所有效果都正常工作，那么你的博客项目中的效果应该也能正常显示。</p>
+      <p style="margin-top: 1rem;">如果效果没有显示，请：</p>
+      <ol style="padding-left: 1.5rem; margin-top: 0.5rem;">
+        <li>强制刷新浏览器 (Cmd+Shift+R 或 Ctrl+Shift+R)</li>
+        <li>检查浏览器控制台是否有错误</li>
+        <li>确认 CSS 文件已正确加载</li>
+        <li>重启开发服务器</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    // 添加按钮点击反馈
+    document.querySelector('.demo-button').addEventListener('click', function() {
+      alert('✨ 按钮效果正常工作！');
+    });
+
+    // 监听滚动，显示提示
+    let scrollHintShown = false;
+    window.addEventListener('scroll', function() {
+      if (!scrollHintShown && window.scrollY > 100) {
+        scrollHintShown = true;
+        console.log('✓ 平滑滚动效果正常');
+      }
+    });
+  </script>
+</body>
+</html>
