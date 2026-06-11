@@ -8,7 +8,7 @@ export const Comments = () => {
       <Giscus
         id="comments"
         repo="daichongdev/devhub"
-        repoId="R_kgDONhqKPw"
+        repoId="R_kgDOS3NWGQ"
         category="General"
         categoryId="DIC_kwDONhqKP84ClOUX"
         mapping="pathname"
