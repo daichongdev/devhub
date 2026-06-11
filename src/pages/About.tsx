@@ -50,10 +50,10 @@ export const About = () => {
               如果您有任何问题、建议或合作意向，欢迎通过以下方式联系我们：
             </p>
             <div className="contact-info">
-              <a href="mailto:contact@techblog.com" className="contact-link">
+              <a href="mailto:daichongdev@gmail.com" className="contact-link">
                 📮 contact@techblog.com
               </a>
-              <a href="https://github.com" className="contact-link" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/daichongdev/devhub" className="contact-link" target="_blank" rel="noopener noreferrer">
                 💻 GitHub
               </a>
               <a href="https://twitter.com" className="contact-link" target="_blank" rel="noopener noreferrer">

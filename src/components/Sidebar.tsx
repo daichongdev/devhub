@@ -49,7 +49,7 @@ export const Sidebar = () => {
           只需在对应技术分区文件夹下添加 Markdown 文件，即可发布你的技术文章。
         </p>
         <a
-          href="https://github.com"
+          href="https://blog.daichongweb.com/article/devhub-how_to_add_article"
           className="sidebar-link"
           target="_blank"
           rel="noopener noreferrer"

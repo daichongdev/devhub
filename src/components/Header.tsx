@@ -41,7 +41,7 @@ export const Header = () => {
             关于
           </Link>
           <a
-            href="https://github.com"
+            href="https://github.com/daichongdev/g"
             className="nav-link"
             target="_blank"
             rel="noopener noreferrer"
