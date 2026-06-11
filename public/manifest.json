@@ -1,0 +1,16 @@
+{
+  "name": "DevHub - 技术社区",
+  "short_name": "DevHub",
+  "description": "开放的技术分享平台，汇聚全球开发者的智慧与经验",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "theme_color": "#11998e",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
