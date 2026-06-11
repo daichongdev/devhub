@@ -19,6 +19,17 @@
     <meta property="twitter:description" content="开放的技术分享平台，汇聚全球开发者的智慧与经验" />
 
     <title>DevHub - 技术社区</title>
+
+    <!-- GitHub Pages SPA 路由修复 -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.getItem('redirect');
+        if (redirect) {
+          sessionStorage.removeItem('redirect');
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
