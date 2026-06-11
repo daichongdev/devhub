@@ -3,14 +3,15 @@ import type { Article, ArticleMeta } from '../types';
 // 动态导入所有 Markdown 文件
 const markdownModules = import.meta.glob('../content/**/*.md', {
   eager: true,
-  as: 'raw'
+  query: '?raw',
+  import: 'default',
 });
 
 // 解析 frontmatter（YAML 格式）
 function parseFrontmatter(content: string): { data: any; content: string } {
   // 确保 content 是字符串
   if (typeof content !== 'string') {
-    console.error('Invalid content type:', typeof content);
+    console.error('Invalid content type:', typeof content, content);
     return { data: {}, content: '' };
   }
 
@@ -60,21 +61,10 @@ function generateArticles(): Article[] {
   const articles: Article[] = [];
   let idCounter = 1;
 
-  Object.entries(markdownModules).forEach(([path, module]) => {
-    // 处理不同的模块格式
-    let content: string;
-    if (typeof module === 'string') {
-      content = module;
-    } else if (module && typeof module === 'object' && 'default' in module) {
-      content = (module as any).default;
-    } else {
-      console.error('Unable to parse module:', path, module);
-      return;
-    }
-
+  Object.entries(markdownModules).forEach(([path, content]) => {
     // 确保 content 是字符串
     if (typeof content !== 'string') {
-      console.error('Content is not a string for:', path);
+      console.error('Content is not a string for:', path, typeof content);
       return;
     }
 
