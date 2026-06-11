@@ -1,6 +1,6 @@
 ---
 title: "Go 并发编程最佳实践"
-author: "张三"
+author: "戴崇"
 date: "2026-06-10"
 category: "Golang"
 tags: ["Go", "并发", "Goroutine", "Channel"]
